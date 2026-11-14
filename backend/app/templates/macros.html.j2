@@ -1,0 +1,15 @@
+{#- 两个模板共用的条目宏 -#}
+{% macro entry_head(title, role, start, end) -%}
+<div class="entry-head">
+  <span class="entry-title">{{ title }}{% if role %}<span class="role">（{{ role }}）</span>{% endif %}</span>
+  <span class="entry-date">{{ start | period }} – {{ end | period }}</span>
+</div>
+{%- endmacro %}
+
+{% macro bullets(items) -%}
+{% if items %}
+<ul class="bullets">
+  {% for item in items %}<li>{{ item }}</li>{% endfor %}
+</ul>
+{% endif %}
+{%- endmacro %}

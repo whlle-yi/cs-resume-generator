@@ -1,0 +1,72 @@
+/* 全局样式：布局与通用表单网格 */
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family:
+    'Helvetica Neue',
+    Arial,
+    'PingFang SC',
+    'Microsoft YaHei',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.layout {
+  height: 100%;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--el-border-color-light);
+  background: #fff;
+}
+.app-header__title {
+  font-size: 17px;
+  font-weight: 700;
+}
+.app-header__sub {
+  color: var(--el-text-color-secondary);
+  font-size: 12px;
+}
+
+.layout__body {
+  height: calc(100% - 52px);
+}
+
+.form-aside {
+  background: #fff;
+  border-right: 1px solid var(--el-border-color-light);
+}
+.form-col {
+  padding: 4px 16px 24px;
+}
+
+.preview-main {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background: #e9ecef;
+  overflow: hidden;
+}
+
+/* 表单通用两列网格 */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+}
+
+/* 列表「添加」按钮：通栏虚线 */
+.add-btn {
+  width: 100%;
+  border-style: dashed;
+}
+</style>

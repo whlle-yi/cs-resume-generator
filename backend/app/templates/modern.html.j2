@@ -1,0 +1,130 @@
+{#- 简约双栏模板：左侧信息栏（联系方式/技能/获奖），右侧主栏（经历） -#}
+{% import "macros.html.j2" as m %}
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>{{ resume.basics.name }} - 简历</title>
+<style>{{ css | safe }}</style>
+</head>
+<body>
+<div class="page modern">
+
+  <header class="modern-header">
+    <div>
+      <h1 class="name">{{ resume.basics.name }}</h1>
+      <p class="objective">求职意向：{{ resume.basics.objective }}</p>
+    </div>
+    {% if resume.basics.photo_url %}
+    <img class="photo" src="{{ resume.basics.photo_url }}" alt="证件照">
+    {% endif %}
+  </header>
+
+  <div class="modern-body">
+
+    <aside class="sidebar">
+      <section>
+        <h2>联系方式</h2>
+        <p class="contact-line"><span class="label">电话：</span>{{ resume.basics.phone }}</p>
+        <p class="contact-line"><span class="label">邮箱：</span>{{ resume.basics.email }}</p>
+        {% if resume.basics.city %}<p class="contact-line"><span class="label">城市：</span>{{ resume.basics.city }}</p>{% endif %}
+        {% if resume.basics.github %}<p class="contact-line"><span class="label">GitHub：</span><a href="{{ resume.basics.github }}">{{ resume.basics.github | replace("https://", "") }}</a></p>{% endif %}
+        {% if resume.basics.blog %}<p class="contact-line"><span class="label">博客：</span><a href="{{ resume.basics.blog }}">{{ resume.basics.blog | replace("https://", "") }}</a></p>{% endif %}
+      </section>
+
+      {% if resume.skills %}
+      <section>
+        <h2>专业技能</h2>
+        {% for group in resume.skills %}
+        <div class="skill-group">
+          <p class="skill-category">{{ group.category }}</p>
+          <ul class="bullets">
+            {% for item in group.items %}
+            <li>{{ item.name }}{% if item.level %}（{{ item.level }}）{% endif %}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endfor %}
+      </section>
+      {% endif %}
+
+      {% if resume.awards %}
+      <section>
+        <h2>获奖情况</h2>
+        {% for award in resume.awards %}
+        <p class="award-line">
+          <span><strong>{{ award.name }}</strong>{% if award.level %}（{{ award.level }}）{% endif %}</span>
+          <span class="date">{{ award.date | month }}</span>
+        </p>
+        {% endfor %}
+      </section>
+      {% endif %}
+    </aside>
+
+    <main class="main-col">
+      {% if resume.education %}
+      <section>
+        <h2>教育背景</h2>
+        {% for edu in resume.education %}
+        <div class="entry">
+          {{ m.entry_head(edu.school, None, edu.start_date, edu.end_date) }}
+          <div class="entry-sub">
+            <span>{% if edu.college %}{{ edu.college }} · {% endif %}{{ edu.major }} · {{ edu.degree }}</span>
+            {% if edu.gpa_rank %}<span class="entry-extra">{{ edu.gpa_rank }}</span>{% endif %}
+          </div>
+          {% if edu.courses %}<p class="muted">主修课程：{{ edu.courses | join("、") }}</p>{% endif %}
+        </div>
+        {% endfor %}
+      </section>
+      {% endif %}
+
+      {% if resume.internships %}
+      <section>
+        <h2>实习经历</h2>
+        {% for item in resume.internships %}
+        <div class="entry">
+          {{ m.entry_head(item.company, item.position, item.start_date, item.end_date) }}
+          {{ m.bullets(item.highlights) }}
+        </div>
+        {% endfor %}
+      </section>
+      {% endif %}
+
+      {% if resume.projects %}
+      <section>
+        <h2>项目经历</h2>
+        {% for proj in resume.projects %}
+        <div class="entry">
+          {{ m.entry_head(proj.name, proj.role, proj.start_date, proj.end_date) }}
+          {% if proj.tech_stack %}<p class="muted">技术栈：{{ proj.tech_stack | join(" / ") }}</p>{% endif %}
+          {% if proj.link %}<p class="muted">项目链接：<a href="{{ proj.link }}">{{ proj.link }}</a></p>{% endif %}
+          {{ m.bullets(proj.highlights) }}
+        </div>
+        {% endfor %}
+      </section>
+      {% endif %}
+
+      {% if resume.campus %}
+      <section>
+        <h2>校园经历</h2>
+        {% for item in resume.campus %}
+        <div class="entry">
+          {{ m.entry_head(item.organization, item.role, item.start_date, item.end_date) }}
+          {{ m.bullets(item.highlights) }}
+        </div>
+        {% endfor %}
+      </section>
+      {% endif %}
+
+      {% if resume.self_evaluation %}
+      <section>
+        <h2>自我评价</h2>
+        {{ m.bullets(resume.self_evaluation) }}
+      </section>
+      {% endif %}
+    </main>
+
+  </div>
+</div>
+</body>
+</html>

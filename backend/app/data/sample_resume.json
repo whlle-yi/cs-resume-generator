@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "basics": {
+    "name": "陈晓东",
+    "objective": "后端开发工程师",
+    "phone": "13800138000",
+    "email": "chenxiaodong@example.com",
+    "city": "武汉",
+    "github": "https://github.com/chenxiaodong",
+    "blog": "https://blog.example.com",
+    "photo_url": null
+  },
+  "education": [
+    {
+      "school": "华中科技大学",
+      "college": "计算机科学与技术学院",
+      "major": "计算机科学与技术",
+      "degree": "本科",
+      "start_date": "2022-09",
+      "end_date": "2026-06",
+      "gpa_rank": "GPA 3.8/4.0（专业前 5%）",
+      "courses": ["数据结构", "操作系统", "计算机网络", "数据库系统", "算法设计与分析", "编译原理"]
+    }
+  ],
+  "skills": [
+    {
+      "category": "编程语言",
+      "items": [
+        { "name": "C/C++", "level": "熟练" },
+        { "name": "Python", "level": "熟练" },
+        { "name": "Go", "level": "掌握" }
+      ]
+    },
+    {
+      "category": "框架与中间件",
+      "items": [
+        { "name": "Spring Boot", "level": "熟练" },
+        { "name": "Redis", "level": "熟练" },
+        { "name": "MySQL", "level": "熟练" },
+        { "name": "Kafka", "level": "了解" }
+      ]
+    },
+    {
+      "category": "工具与平台",
+      "items": [
+        { "name": "Linux", "level": "熟练" },
+        { "name": "Git", "level": "熟练" },
+        { "name": "Docker", "level": "掌握" }
+      ]
+    }
+  ],
+  "internships": [
+    {
+      "company": "小米科技",
+      "position": "后端开发实习生",
+      "start_date": "2025-07",
+      "end_date": "2025-10",
+      "highlights": [
+        "参与 IoT 设备管理平台迭代开发，基于 Spring Boot 独立完成设备告警模块的接口设计与实现，上线后日均处理告警 50 万+ 条",
+        "针对告警查询接口慢查询问题，通过引入 Redis 缓存热点数据与 MySQL 索引优化，将 P99 响应时间从 1.2s 降至 180ms",
+        "参与团队 Code Review，输出 3 篇内部技术文档，沉淀告警链路设计经验"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "分布式键值存储系统",
+      "role": "核心开发",
+      "start_date": "2025-02",
+      "end_date": "2025-06",
+      "tech_stack": ["Go", "Raft", "gRPC", "BoltDB"],
+      "highlights": [
+        "基于 Raft 共识算法实现三节点分布式 KV 存储，支持领导者选举、日志复制与快照恢复，单节点故障可在 2s 内自动恢复服务",
+        "设计基于跳表 + BoltDB 的分层存储引擎，配合 wal 预写日志，顺序写吞吐达 8 万 ops/s",
+        "使用 gRPC 实现节点间通信，编写 200+ 用例的混沌测试覆盖选举脑裂、网络分区等异常场景"
+      ],
+      "link": "https://github.com/chenxiaodong/dkv"
+    },
+    {
+      "name": "校园二手交易平台",
+      "role": "组长",
+      "start_date": "2024-03",
+      "end_date": "2024-09",
+      "tech_stack": ["Spring Boot", "Vue3", "MySQL", "Redis", "Docker"],
+      "highlights": [
+        "带领 4 人团队完成商品交易、即时聊天、信用评价三大模块的设计与开发，累计注册用户 2000+",
+        "基于 WebSocket 实现买卖双方即时聊天，通过 Redis Stream 异步落库削峰，支撑单机 3000+ 并发连接",
+        "设计基于用户行为的信用分模型，违规交易投诉率下降 60%"
+      ]
+    }
+  ],
+  "campus": [
+    {
+      "organization": "校计算机协会",
+      "role": "技术部部长",
+      "start_date": "2023-09",
+      "end_date": "2024-06",
+      "highlights": [
+        "组织 5 场校级编程训练营，累计覆盖 400+ 人次",
+        "搭建协会 OJ 判题平台并维护题库 300+ 题"
+      ]
+    }
+  ],
+  "awards": [
+    { "name": "全国大学生软件创新大赛", "level": "国家级二等奖", "date": "2025-05" },
+    { "name": "蓝桥杯软件类 C/C++ 组", "level": "省级一等奖", "date": "2024-04" },
+    { "name": "校一等奖学金（2 次）", "level": null, "date": "2024-12" }
+  ],
+  "self_evaluation": [
+    "基础扎实：系统学习操作系统、计算机网络等核心课程，熟悉常见数据结构与算法",
+    "工程能力：具备从需求分析、方案设计到上线复盘的完整项目经验，重视代码质量与文档沉淀",
+    "团队协作：有组长与实习生双重经历，沟通顺畅，能快速融入团队并承担职责"
+  ]
+}

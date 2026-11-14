@@ -1,0 +1,117 @@
+{#- 经典单栏模板：黑白灰稳重版式，信息密度高 -#}
+{% import "macros.html.j2" as m %}
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>{{ resume.basics.name }} - 简历</title>
+<style>{{ css | safe }}</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="resume-header">
+    <div>
+      <h1 class="name">{{ resume.basics.name }}</h1>
+      <p class="objective">求职意向：{{ resume.basics.objective }}</p>
+      <p class="contact">
+        <span>{{ resume.basics.phone }}</span>
+        <span class="sep">|</span>
+        <span>{{ resume.basics.email }}</span>
+        {% if resume.basics.city %}<span class="sep">|</span><span>{{ resume.basics.city }}</span>{% endif %}
+        {% if resume.basics.github %}<span class="sep">|</span><a href="{{ resume.basics.github }}">GitHub</a>{% endif %}
+        {% if resume.basics.blog %}<span class="sep">|</span><a href="{{ resume.basics.blog }}">个人博客</a>{% endif %}
+      </p>
+    </div>
+    {% if resume.basics.photo_url %}
+    <img class="photo" src="{{ resume.basics.photo_url }}" alt="证件照">
+    {% endif %}
+  </header>
+
+  {% if resume.education %}
+  <section>
+    <h2>教育背景</h2>
+    {% for edu in resume.education %}
+    <div class="entry">
+      {{ m.entry_head(edu.school, None, edu.start_date, edu.end_date) }}
+      <div class="entry-sub">
+        <span>{% if edu.college %}{{ edu.college }} · {% endif %}{{ edu.major }} · {{ edu.degree }}</span>
+        {% if edu.gpa_rank %}<span class="entry-extra">{{ edu.gpa_rank }}</span>{% endif %}
+      </div>
+      {% if edu.courses %}<p class="muted">主修课程：{{ edu.courses | join("、") }}</p>{% endif %}
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  {% if resume.skills %}
+  <section>
+    <h2>专业技能</h2>
+    {% for group in resume.skills %}
+    <p class="skills-line"><strong>{{ group.category }}：</strong>{{ group.items | skill_items }}</p>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  {% if resume.internships %}
+  <section>
+    <h2>实习经历</h2>
+    {% for item in resume.internships %}
+    <div class="entry">
+      {{ m.entry_head(item.company, item.position, item.start_date, item.end_date) }}
+      {{ m.bullets(item.highlights) }}
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  {% if resume.projects %}
+  <section>
+    <h2>项目经历</h2>
+    {% for proj in resume.projects %}
+    <div class="entry">
+      {{ m.entry_head(proj.name, proj.role, proj.start_date, proj.end_date) }}
+      {% if proj.tech_stack %}<p class="muted">技术栈：{{ proj.tech_stack | join(" / ") }}</p>{% endif %}
+      {% if proj.link %}<p class="muted">项目链接：<a href="{{ proj.link }}">{{ proj.link }}</a></p>{% endif %}
+      {{ m.bullets(proj.highlights) }}
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  {% if resume.campus %}
+  <section>
+    <h2>校园经历</h2>
+    {% for item in resume.campus %}
+    <div class="entry">
+      {{ m.entry_head(item.organization, item.role, item.start_date, item.end_date) }}
+      {{ m.bullets(item.highlights) }}
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  {% if resume.awards %}
+  <section>
+    <h2>获奖情况</h2>
+    {% for award in resume.awards %}
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">{{ award.name }}{% if award.level %}<span class="role">（{{ award.level }}）</span>{% endif %}</span>
+        <span class="entry-date">{{ award.date | month }}</span>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  {% if resume.self_evaluation %}
+  <section>
+    <h2>自我评价</h2>
+    {{ m.bullets(resume.self_evaluation) }}
+  </section>
+  {% endif %}
+
+</div>
+</body>
+</html>

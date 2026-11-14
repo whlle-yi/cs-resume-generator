@@ -1,0 +1,31 @@
+/* 经典单栏：黑白灰稳重风格 */
+
+.resume-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10pt;
+}
+
+.name {
+  font-size: 19pt;
+  font-weight: 700;
+  letter-spacing: 2pt;
+  line-height: 1.25;
+}
+
+.objective {
+  font-size: 11pt;
+  font-weight: 700;
+  margin-top: 2pt;
+}
+
+.contact {
+  margin-top: 3pt;
+  font-size: 9.5pt;
+  color: #3a4149;
+}
+.contact .sep {
+  margin: 0 4pt;
+  color: #9aa0a6;
+}
